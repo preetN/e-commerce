@@ -27,23 +27,32 @@ function SideBar() {
       label: "Reviews",
       path: "/reviews",
     },
-    {
-      label: "Profile",
-      path: "/profile",
-    },
   ];
   return (
     <div>
       <nav>
-        <div>Admin account</div>
+        <div className="mt-3 text-center">Admin account</div>
         <hr />
         <div>
-          <ul>
+          <ul className="list-unstyled">
             {sidelinks.map((link) => (
-              <li>
-                <Link to={link.path}>{link.label}</Link>
+              <li className="p-2 text-center">
+                <Link className="nav-link" to={link.path}>
+                  {link.label}
+                </Link>
               </li>
             ))}
+            <hr />
+            <li className="p-2 text-center">
+              <Link className="nav-link" to="/profile">
+                Profile
+              </Link>
+            </li>
+            <li className="p-2 text-center">
+              <Link className="nav-link" to="/register">
+                Admin Register
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

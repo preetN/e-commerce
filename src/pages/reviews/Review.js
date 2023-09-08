@@ -3,7 +3,7 @@ import AdminLayout from "../../components/layout/AdminLayout";
 
 function Review() {
   return (
-    <AdminLayout>
+    <AdminLayout title="Reviews">
       <div>review</div>
     </AdminLayout>
   );

@@ -1,7 +1,7 @@
 import React from "react";
+import AdminLayout from "../../components/layout/AdminLayout";
 
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return <AdminLayout title="Dashboard">Categorqwkjdkqwjky</AdminLayout>;
 }
-
 export default Dashboard;

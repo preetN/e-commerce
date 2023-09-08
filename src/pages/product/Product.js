@@ -1,7 +1,8 @@
 import React from "react";
+import AdminLayout from "../../components/layout/AdminLayout";
 
 function Product() {
-  return <div>Product</div>;
+  return <AdminLayout title="Product">wnedkqmkmqwk</AdminLayout>;
 }
 
 export default Product;

@@ -1,7 +1,8 @@
 import React from "react";
+import AdminLayout from "../../components/layout/AdminLayout";
 
 function Paymentoptions() {
-  return <div>erjfnk3efdklew</div>;
+  return <AdminLayout title="Payment Options">po</AdminLayout>;
 }
 
 export default Paymentoptions;

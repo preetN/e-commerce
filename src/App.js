@@ -22,7 +22,7 @@ function App() {
         <Route path="/categories" element={<Category />} />
         <Route path="/product" element={<Product />} />
         <Route path="/paymentoptions" element={<Paymentoptions />} />
-        <Route path="/profile" element={<Profile.js />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/reviews" element={<Review />} />
