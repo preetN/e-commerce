@@ -1,11 +1,19 @@
-import React, { useState } from "react";
-import { auth, db } from "../../config/Firebase";
-import { Form, Button, useAccordionButton } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form, Button } from "react-bootstrap";
 import CustomInput from "../../components/custominput/CustomInput";
 import Header from "../../components/layout/Header";
 import Footer from "../../components/layout/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { signInAction } from "../../redux/user/userAction";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const [form, setForm] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { admin } = useSelector((state) => state.admin);
+  useEffect(() => {
+    admin?.uid && navigate("/dashboard");
+  }, [admin, navigate]);
   const custominput = [
     {
       label: "Email",
@@ -20,13 +28,11 @@ function Login() {
       name: "password",
     },
   ];
-  const handleOnChange = (e) => {
-    console.log(e.target.value);
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+    dispatch(signInAction(form));
   };
   return (
     <>
@@ -37,7 +43,12 @@ function Login() {
           onSubmit={handleOnSubmit}
         >
           {custominput.map((input) => (
-            <CustomInput onChange={handleOnChange} {...input} />
+            <CustomInput
+              onChange={(e) =>
+                setForm({ ...form, [e.target.name]: e.target.value })
+              }
+              {...input}
+            />
           ))}
           <Button variant="primary" type="submit">
             Submit
