@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import CustomInput from "../../components/custominput/CustomInput";
-import Header from "../../components/layout/Header";
-import Footer from "../../components/layout/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { signInAction } from "../../redux/user/userAction";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [form, setForm] = useState({});
   const dispatch = useDispatch();
@@ -31,19 +29,18 @@ function Login() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
     dispatch(signInAction(form));
   };
   return (
     <>
-      <Header />
       <div className="main">
         <Form
           className="login mt-5 p-5 border shadow-lg rounded"
           onSubmit={handleOnSubmit}
         >
-          {custominput.map((input) => (
+          {custominput.map((input, i) => (
             <CustomInput
+              key={i}
               onChange={(e) =>
                 setForm({ ...form, [e.target.name]: e.target.value })
               }
@@ -53,9 +50,11 @@ function Login() {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          <Link className="nav-link" to={"/forgotpassword"}>
+            Forgot password
+          </Link>
         </Form>
       </div>
-      <Footer />
     </>
   );
 }

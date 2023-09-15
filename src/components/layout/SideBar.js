@@ -36,7 +36,7 @@ function SideBar() {
         <div>
           <ul className="list-unstyled">
             {sidelinks.map((link, i) => (
-              <li className="p-2 text-center">
+              <li className="p-2 text-center" key={i}>
                 <Link className="nav-link" to={link.path}>
                   {link.label}
                 </Link>

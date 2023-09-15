@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { Button } from "react-bootstrap";
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/Firebase";
 function Header() {
   const dispatch = useDispatch();
   const { admin } = useSelector((state) => state.admin);
@@ -15,6 +17,17 @@ function Header() {
   useEffect(() => {
     !admin?.uid && navigate("/");
   }, [admin, navigate]);
+  const handleOnLogout = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+        dispatch(setAdmin({}));
+        toast.success("Logged out");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
       <Container>
@@ -45,13 +58,7 @@ function Header() {
               </Link>
             )}
             {admin?.uid && (
-              <Button
-                className="nav-link ms-2"
-                onClick={() => {
-                  dispatch(setAdmin({}));
-                  return toast.success("Logged out");
-                }}
-              >
+              <Button className="nav-link ms-2" onClick={handleOnLogout}>
                 Logout <BiLogOut />
               </Button>
             )}

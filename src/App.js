@@ -14,12 +14,23 @@ import Review from "./pages/reviews/Review";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./privateroute/PrivateRoute";
+import { useDispatch } from "react-redux";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./config/Firebase";
+import { getUserAction } from "./redux/user/userAction";
 
 function App() {
+  const dispatch = useDispatch();
+  onAuthStateChanged(auth, (user) => {
+    if (user?.uid) {
+      dispatch(getUserAction(user.uid));
+    }
+  });
   return (
     <div>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route
           path="/register"
           element={
@@ -84,7 +95,6 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route
           path="/reviews"
           element={
