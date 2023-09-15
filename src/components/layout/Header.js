@@ -22,9 +22,31 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
+            {admin?.uid ? (
+              <div className="w=100 d-flex justify-content-center">
+                <div
+                  style={{
+                    height: "40px",
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "40px",
+                    borderRadius: "50%",
+                    backgroundColor: "grey",
+                    alignItems: "center",
+                  }}
+                  onClick={() => navigate("/profile")}
+                >
+                  {admin.fname[0].toUpperCase()}
+                </div>
+              </div>
+            ) : (
+              <Link className="nav-link" to="/">
+                Login <BiLogIn />
+              </Link>
+            )}
             {admin?.uid && (
               <Button
-                className="nav-link"
+                className="nav-link ms-2"
                 onClick={() => {
                   dispatch(setAdmin({}));
                   return toast.success("Logged out");
@@ -32,25 +54,6 @@ function Header() {
               >
                 Logout <BiLogOut />
               </Button>
-            )}
-
-            {admin?.uid ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  width: "40px",
-                  borderRadius: "50%",
-                  backgroundColor: "grey",
-                  alignItems: "center",
-                }}
-              >
-                {admin.fname[0].toUpperCase()}
-              </div>
-            ) : (
-              <Link className="nav-link" to="/">
-                Login <BiLogIn />
-              </Link>
             )}
           </Nav>
         </Navbar.Collapse>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AdminLayout from "../../components/layout/AdminLayout";
 import CustomInput from "../../components/custominput/CustomInput";
 import { Form, Button } from "react-bootstrap";
