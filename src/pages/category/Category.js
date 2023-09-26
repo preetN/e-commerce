@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import AdminLayout from "../../components/layout/AdminLayout";
-import NewCategoryForm from "./NewCategoryForm";
-import CategoryTable from "./CategoryTable";
+import CategoryTable from "../../components/category/CategoryTable";
+import NewCategoryForm from "../../components/category/NewCategoryForm";
 
 function Category() {
   return (
     <AdminLayout title="Category">
-      Category
       <NewCategoryForm />
+      <CategoryTable />
     </AdminLayout>
   );
 }

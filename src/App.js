@@ -18,6 +18,8 @@ import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/Firebase";
 import { getUserAction } from "./redux/user/userAction";
+import { useEffect } from "react";
+import { fetchCategoriesAction } from "./redux/category/categoryAction";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ function App() {
       dispatch(getUserAction(user.uid));
     }
   });
+
   return (
     <div>
       <Routes>

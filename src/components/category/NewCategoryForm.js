@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import slugify from "slugify";
 import { addCategoryAction } from "../../redux/category/categoryAction";
 function NewCategoryForm() {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({ status: "inactive" });
   const dispatch = useDispatch();
 
   const handleOnChange = (e) => {
