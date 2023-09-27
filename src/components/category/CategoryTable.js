@@ -7,18 +7,15 @@ import EditCategoryForm from "./EditCategoryForm";
 import { setModalShow } from "../../redux/systemState/systemSlice";
 import { fetchCategoriesAction } from "../../redux/category/categoryAction";
 function CategoryTable() {
-  useEffect(() => {
-    dispatch(fetchCategoriesAction());
-  }, []);
   const dispatch = useDispatch();
   const { categoryList } = useSelector((state) => state.category);
   const handleOnEdit = (category) => {
     dispatch(setSelectedCategory(category));
     dispatch(setModalShow(true));
   };
-  // var categoryLsit = [{ status: "hello" }, { status: "blue" }];
-  console.log("Category list", categoryList);
-
+  useEffect(() => {
+    dispatch(fetchCategoriesAction());
+  }, []);
   return (
     <>
       <CustomModal show={true} title="Update Category">

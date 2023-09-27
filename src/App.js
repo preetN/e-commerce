@@ -18,9 +18,8 @@ import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/Firebase";
 import { getUserAction } from "./redux/user/userAction";
-import { useEffect } from "react";
-import { fetchCategoriesAction } from "./redux/category/categoryAction";
-
+import AddNewProduct from "./pages/product/AddNewProduct";
+import EditProduct from "./pages/product/EditProduct";
 function App() {
   const dispatch = useDispatch();
   onAuthStateChanged(auth, (user) => {
@@ -103,6 +102,22 @@ function App() {
           element={
             <PrivateRoute>
               <Review />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/product/new"
+          element={
+            <PrivateRoute>
+              <AddNewProduct />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/product/edit/:slug"
+          element={
+            <PrivateRoute>
+              <EditProduct />
             </PrivateRoute>
           }
         />

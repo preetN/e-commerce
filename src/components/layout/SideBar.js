@@ -11,10 +11,12 @@ function SideBar() {
       label: "Categories",
       path: "/categories",
     },
+    { label: "Products", path: "/product" },
     {
       label: "Payment Option",
       path: "/paymentoptions",
     },
+
     {
       label: "Orders",
       path: "/orders",

@@ -9,4 +9,13 @@
   background-color: green;
   color: white;
   padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+.inactive {
+  background-color: red;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 5px;
+  text-transform: capitalize;
 }
