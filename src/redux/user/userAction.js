@@ -3,9 +3,29 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, db } from "../../config/Firebase";
-import { setAdmin } from "./userSlice";
+import { setAdmin, updateStatus } from "./userSlice";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { TBL_USERS } from "../../utils/const";
+export const updateProfile =
+  ({ uid, ...rest }) =>
+  async (dispatch) => {
+    try {
+      const catPromise = setDoc(doc(db, TBL_USERS, uid), rest, {
+        merge: true,
+      });
+      toast.promise(catPromise, {
+        pending: "In Progress...",
+        error: "Error...",
+        success: "Successfully Saved",
+      });
+      dispatch(getUserAction(uid));
+    } catch (e) {
+      console.log("error", e);
+      toast.error("Error", e.message);
+    }
+  };
+
 export const signUpAction = (form) => (dispatch) => {
   createUserWithEmailAndPassword(auth, form.email, form.password)
     .then((userCredential) => {

@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
 
 function SideBar() {
+  const { admin } = useSelector((state) => state.admin);
   const sidelinks = [
     {
       label: "Dashboard",
@@ -30,6 +32,14 @@ function SideBar() {
       path: "/reviews",
     },
   ];
+  const { pathname } = useLocation();
+  const getLinkCLasses = (path) => {
+    let classes = "ms-2 p-2 side-link";
+    if (pathname === path) {
+      classes += "active-link";
+    }
+    return classes;
+  };
   return (
     <div>
       <nav>
@@ -37,20 +47,20 @@ function SideBar() {
         <hr />
         <div>
           <ul className="list-unstyled">
-            {sidelinks.map((link, i) => (
-              <li className="p-2 text-center" key={i}>
+            {sidelinks.map((link, path, i) => (
+              <li className={getLinkCLasses(path)} key={i}>
                 <Link className="nav-link" to={link.path}>
                   {link.label}
                 </Link>
               </li>
             ))}
             <hr />
-            <li className="p-2 text-center">
+            <li className={getLinkCLasses("/profile")}>
               <Link className="nav-link" to="/profile">
                 Profile
               </Link>
             </li>
-            <li className="p-2 text-center">
+            <li className={getLinkCLasses("/register")}>
               <Link className="nav-link" to="/register">
                 Admin Register
               </Link>

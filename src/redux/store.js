@@ -6,11 +6,14 @@ import adminReducer from "./user/userSlice";
 import categoryReducer from "./category/categorySlice";
 import systemReducer from "./systemState/systemSlice";
 import productReducer from "./product/productSlice";
+import paymentOptionReducer from "./paymentOptions/paymentOptionsSlice";
+
 const reducers = combineReducers({
   admin: adminReducer,
   category: categoryReducer,
   product: productReducer,
   system: systemReducer,
+  paymentOption: paymentOptionReducer,
 });
 const persistConfig = {
   key: "root",
